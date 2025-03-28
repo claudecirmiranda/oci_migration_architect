@@ -487,12 +487,137 @@ Um balanceador de carga é um componente de infraestrutura de rede que distribui
 *   Balanceadores de carga são essenciais para aplicações que precisam de alta disponibilidade e escalabilidade
 *   A escolha correta depende dos requisitos específicos do seu projeto
 
-Atividade Prática
------------------
+FastConnect: Conexão Privada e Dedicada para Oracle Cloud Infrastructure
+========================================================================
 
-Discuta em grupo:
-1.  Quais são os cenários ideais para usar balanceamento de carga?
-2.  Como a escolha da política de balanceamento impacta o desempenho?
+Introdução
+----------
+
+Bem-vindos à aula sobre FastConnect. Nesta apresentação, vamos explorar em detalhes o que é FastConnect, seus conceitos fundamentais e modelos de conectividade.
+
+O que é FastConnect?
+--------------------
+
+FastConnect é uma conexão dedicada e privada entre seu ambiente local (on-premises) e a Oracle Cloud Infrastructure (OCI). As principais características são:
+*   Conexão física e privada
+*   Opções de alta largura de banda
+*   Maior confiabilidade e consistência de rede
+*   Sem tráfego pela internet pública
+
+Conceitos Fundamentais do FastConnect
+-------------------------------------
+
+### 1. Localização FastConnect
+
+Uma localização FastConnect é um data center da Oracle onde você pode se conectar à infraestrutura de nuvem. Estas localizações podem estar agrupadas em uma área metropolitana, que contém múltiplas localizações FastConnect.
+
+### 2. Parceiros Oracle vs Provedor de Terceiros
+
+#### Parceiro Oracle
+
+*   Provedor de serviço de rede integrado com Oracle
+*   Já possui conexão estabelecida em uma localização FastConnect
+
+#### Provedor de Terceiros
+
+*   Provedor de serviço de rede não listado como parceiro Oracle
+*   Requer autorização adicional para estabelecer conexão
+
+### 3. Colocação (Co-location)
+
+Colocação significa que seu próprio equipamento está implantado na localização FastConnect:
+*   Você possui uma gaiola (cage) no data center
+*   Seus servidores de borda estão instalados na mesma localização
+
+### 4. Conexão Cruzada (Cross-Connect)
+
+*   Conexão física real entre sua rede e a Oracle
+*   Cabo físico que conecta sua infraestrutura à infraestrutura Oracle
+
+### 5. Grupo de Conexão Cruzada
+
+Coleção de conexões cruzadas usadas quando necessita aumentar a largura de banda.
+
+### 6. Gateway de Roteamento Dinâmico (DRG)
+
+Essencial para conexões de peering privado, permite:
+*   Comunicação privada entre rede local e Rede em Nuvem Virtual (VCN)
+*   Não é necessário para peering público
+
+### 7. Circuito Virtual
+
+*   Caminho de rede lógico isolado
+*   Dois tipos: circuito virtual público e privado
+
+### 8. Sessão BGP
+
+Troca de informações de roteamento entre sistemas autônomos.
+
+### 9. BFD (Detecção Bidirecional de Encaminhamento)
+
+*   Verifica conectividade entre dispositivos
+*   Método de detecção de falhas entre redes adjacentes
+
+### 10. Dispositivos Oracle Edge
+
+Composto por:
+*   Dispositivo físico: Termina a conexão física (cross-connect)
+*   Dispositivo lógico: Termina o circuito virtual
+
+### 11. Carta de Autorização (LOA)
+
+Documento fornecido pela Oracle para:
+*   Provedores de terceiros estabelecerem conexão física
+*   Clientes em modelo de colocação completarem conexão
+
+Modelos de Conectividade
+------------------------
+
+### 1. FastConnect com Parceiro Oracle
+
+*   Conexão pré-estabelecida
+*   Menos cara e mais flexível
+*   Parceiro já tem infraestrutura na localização FastConnect
+
+### 2. FastConnect Colocação Direta
+
+*   Cliente já possui presença na localização FastConnect
+*   Estabelece conexão entre sua gaiola e gaiola Oracle
+
+### 3. FastConnect com Provedor de Terceiros
+
+*   Trabalha com operadora de sua escolha
+*   Conexão física do data center à localização FastConnect
+*   Útil quando sem parceiro Oracle disponível
+
+Benefícios
+----------
+
+*   Sem cobranças de transferência de dados de saída
+*   Comunicação privada
+*   Conectividade dedicada sem tráfego pela internet
+*   Suporta aplicações sensíveis à latência
+
+Tipos de Peering
+----------------
+
+### Peering Privado
+
+*   Extensão da infraestrutura local para VCN
+*   Requer Gateway de Roteamento Dinâmico
+
+### Peering Público
+
+*   Conexão aos serviços públicos OCI
+*   Sem uso da internet
+
+Conclusão
+---------
+
+FastConnect oferece uma solução robusta e segura para conectar infraestrutura local à nuvem Oracle, com flexibilidade e opções para diferentes necessidades de arquitetura de rede.
+
+---------
+
 ![image](https://github.com/user-attachments/assets/6ae881e1-f73a-421e-a254-4275fe66a23b)
 
 ![image](https://github.com/user-attachments/assets/18243579-a9ac-4da0-be6a-69509992dd97)
@@ -514,6 +639,37 @@ Discuta em grupo:
 ![image](https://github.com/user-attachments/assets/6db8c7d2-15da-485f-8e19-41d5e26916e5)
 
 ![image](https://github.com/user-attachments/assets/a0b0e3c5-cf92-45f1-90e2-efea19661cc8)
+
+![image](https://github.com/user-attachments/assets/f00f463d-1153-4481-944e-4757d5040e0b)
+
+![image](https://github.com/user-attachments/assets/7788c58a-7f99-4599-8e92-5e73350ba6e9)
+
+![image](https://github.com/user-attachments/assets/7594d3b0-3262-42bd-a746-8db40fc70ed5)
+
+![image](https://github.com/user-attachments/assets/5c8639e1-bf76-4d2e-b105-c739fb248eab)
+
+![image](https://github.com/user-attachments/assets/68976c0d-3108-42b5-b082-ef1dc32f5e24)
+
+![image](https://github.com/user-attachments/assets/3cda5b84-4701-41c3-ad76-94634ceda803)
+
+![image](https://github.com/user-attachments/assets/a75ed636-e3de-4c78-8c65-804e328c21e5)
+
+![image](https://github.com/user-attachments/assets/423faeaf-3473-4fd9-96a3-24b9ab861524)
+
+![image](https://github.com/user-attachments/assets/2ed89c76-aea3-4b9a-9cf3-9344ca77bd1b)
+
+![image](https://github.com/user-attachments/assets/2ed649a5-f172-4c9d-913f-67863a687df2)
+
+![image](https://github.com/user-attachments/assets/9328843f-1cac-4aa3-bf77-568e5a5108f1)
+
+![image](https://github.com/user-attachments/assets/e2de81e4-146a-4bb8-95dd-4f7479852b03)
+
+![image](https://github.com/user-attachments/assets/2f81f074-d296-4108-9adb-cdf34d08d9c1)
+
+
+
+
+
 
 
 
