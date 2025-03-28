@@ -349,6 +349,150 @@ Conclusão
 
 A segurança de rede no OCI é flexível e poderosa. Grupos de Segurança de Rede e Listas de Segurança oferecem múltiplas camadas de proteção para suas aplicações em nuvem.
 
+
+Balanceadores de Carga - Conceitos Fundamentais
+===============================================
+
+### 1. O Que é um Balanceador de Carga?
+-----------------------------------
+
+Um balanceador de carga é um componente de infraestrutura de rede que distribui o tráfego de entrada entre múltiplos servidores backend. Imagine-o como um "distribuidor de tráfego" que garante que nenhum servidor fique sobrecarregado.
+
+### Componentes Básicos:
+
+*   Cliente
+*   Balanceador de Carga
+*   Servidores Backend
+
+### Conceitos Fundamentais de Balanceadores de Carga
+---------------------------------------------------
+
+### 1.1 Servidores Backend
+
+*   **Definição**: Servidores responsáveis por gerar o conteúdo
+*   **Características**:
+    *   Recebem tráfego distribuído pelo balanceador de carga
+    *   Processam solicitações de forma distribuída
+*   **Exemplo Prático**: Servidores web que hospedam um site ou aplicação
+
+### 1.2 Backend Set (Conjunto de Backend)
+
+*   **Definição**: Agrupamento lógico de recursos de servidor
+*   **Componentes**:
+    *   Lista de servidores backend
+    *   Política de verificação de integridade
+    *   Política de balanceamento de carga
+*   **Objetivo**: Organizar e gerenciar um grupo de servidores como uma unidade
+
+### 1.3 Política de Verificação de Saúde
+
+*   **Definição**: Mecanismo de teste para garantir a disponibilidade dos servidores
+*   **Métodos de Verificação**:
+    *   Nível TCP: Teste de estabelecimento de conexão
+    *   Nível HTTP: Validação de resposta em URI específico
+*   **Ação**: Remove automaticamente servidores não responsivos da rotação
+
+### 1.4 Listener
+
+*   **Definição**: Ponto de escuta para tráfego de entrada
+*   **Configurações**:
+    *   Protocolo: HTTP, HTTPS, HTTP/2, TCP
+    *   Número da porta
+*   **Função**: Monitorar e gerenciar o tráfego no endereço IP do balanceador
+
+### 1.5 Política de Balanceamento de Carga
+
+*   **Definição**: Estratégia de distribuição de tráfego entre servidores
+*   **Tipos de Políticas**:
+    1.  Round Robin
+        *   Distribuição sequencial do tráfego
+        *   Política padrão
+    2.  Menor Conexão
+        *   Direciona tráfego para servidor com menos conexões ativas
+    3.  Hash de IP
+        *   Roteia solicitações consistentemente para o mesmo servidor
+
+### 1.6 Forma do Balanceador de Carga
+
+*   **Definição**: Configuração de largura de banda
+*   **Características**:
+    *   Valor mínimo: Garante prontidão para carga
+    *   Valor máximo: Controla custos
+*   **Intervalo no OCI**: 10 Mbps a 8.000 Mbps
+*   **Objetivo**: Flexibilidade e controle de recursos
+
+### 1.7 SSL (Secure Sockets Layer)
+
+*   **Definição**: Camada de comunicação criptografada
+*   **Opções de Implementação**:
+    1.  Terminação SSL
+        *   Descriptografar tráfego no balanceador
+    2.  SSL Ponto a Ponto
+        *   Criptografia terminada e reiniciada no balanceador
+    3.  Tunelamento SSL
+        *   Passagem direta do tráfego SSL
+
+### 1.8 Persistência de Sessão
+
+*   **Definição**: Manutenção de conexão do cliente com o mesmo servidor
+*   **Casos de Uso**:
+    *   Carrinho de compras
+    *   Sessões de login
+*   **Métodos**:
+    1.  Aderência de cookie do aplicativo
+    2.  Aderência de cookie do balanceador de carga
+
+### 1.9 Certificados
+
+*   **Definição**: Credenciais de segurança para conexões HTTPS
+*   **Função**:
+    *   Encerrar conexões seguras
+    *   Descriptografar solicitações
+*   **Requisito**: Obrigatório para listeners HTTPS
+
+### 2. Benefícios dos Balanceadores de Carga
+----------------------------------------
+
+### 2.1 Escalabilidade
+
+*   Permite aumentar o número de servidores conforme a demanda
+*   Facilita a expansão da infraestrutura de forma flexível
+
+### 2.2 Utilização Eficiente de Recursos
+
+*   Distribui o tráfego entre servidores
+*   Otimiza o uso dos recursos computacionais
+
+### 2.3 Alta Disponibilidade
+
+*   Garante continuidade de serviço mesmo se um servidor falhar
+*   Redireciona tráfego para servidores saudáveis
+
+### 3. Tipos de Balanceadores de Carga
+----------------------------------
+
+### 3.1 Balanceador de Carga Público
+
+*   Possui IP público
+*   Acessível pela internet
+
+### 3.2 Balanceador de Carga Privado
+
+*   Possui IP privado
+*   Visível apenas dentro da rede virtual
+
+### 4. Considerações Finais
+-----------------------
+
+*   Balanceadores de carga são essenciais para aplicações que precisam de alta disponibilidade e escalabilidade
+*   A escolha correta depende dos requisitos específicos do seu projeto
+
+Atividade Prática
+-----------------
+
+Discuta em grupo:
+1.  Quais são os cenários ideais para usar balanceamento de carga?
+2.  Como a escolha da política de balanceamento impacta o desempenho?
 ![image](https://github.com/user-attachments/assets/6ae881e1-f73a-421e-a254-4275fe66a23b)
 
 ![image](https://github.com/user-attachments/assets/18243579-a9ac-4da0-be6a-69509992dd97)
@@ -363,8 +507,13 @@ A segurança de rede no OCI é flexível e poderosa. Grupos de Segurança de Red
 
 ![image](https://github.com/user-attachments/assets/5c7a40dd-74e8-4e2e-90a7-846a90d644de)
 
+![image](https://github.com/user-attachments/assets/c54553ee-53f1-4afe-aac5-8d20fabf394d)
 
+![image](https://github.com/user-attachments/assets/5ef9433a-906d-4a1d-a288-c25d72f6449f)
 
+![image](https://github.com/user-attachments/assets/6db8c7d2-15da-485f-8e19-41d5e26916e5)
+
+![image](https://github.com/user-attachments/assets/a0b0e3c5-cf92-45f1-90e2-efea19661cc8)
 
 
 
