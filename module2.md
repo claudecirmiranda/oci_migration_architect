@@ -81,6 +81,8 @@ Conclusão
 
 A VCN é fundamental para arquitetar redes seguras e eficientes no Oracle Cloud, permitindo um controle granular sobre o ambiente de infraestrutura.
 
+---------
+
 Tabelas de Rota em VCN: Guia Completo
 =====================================
 
@@ -226,6 +228,8 @@ O diagrama ilustra a arquitetura de rede de um centro de dados da Oracle Cloud, 
     *   Destinos e tipos de alvo, indicando que o tráfego destinado a 0.0.0.0/0 é direcionado ao **NAT Gateway**, e o tráfego para o armazenamento de objetos é gerido pelo **Service Gateway**.
 Esta arquitetura facilita a comunicação segura e eficiente entre os componentes na nuvem, oferecendo uma maneira estruturada de gerenciar dados e serviços.
 
+---------
+
 Segurança em VCN: Grupos de Segurança de Rede e Listas de Segurança
 ===================================================================
 
@@ -321,8 +325,6 @@ Exemplo Prático
 
 ### Cenário: Aplicação Web Multicamadas
 
-Copiar
-
 ```
 VCN
 │
@@ -349,6 +351,7 @@ Conclusão
 
 A segurança de rede no OCI é flexível e poderosa. Grupos de Segurança de Rede e Listas de Segurança oferecem múltiplas camadas de proteção para suas aplicações em nuvem.
 
+---------
 
 Balanceadores de Carga - Conceitos Fundamentais
 ===============================================
@@ -487,6 +490,8 @@ Um balanceador de carga é um componente de infraestrutura de rede que distribui
 *   Balanceadores de carga são essenciais para aplicações que precisam de alta disponibilidade e escalabilidade
 *   A escolha correta depende dos requisitos específicos do seu projeto
 
+---------
+
 FastConnect: Conexão Privada e Dedicada para Oracle Cloud Infrastructure
 ========================================================================
 
@@ -618,6 +623,106 @@ FastConnect oferece uma solução robusta e segura para conectar infraestrutura 
 
 ---------
 
+Considerações de Rede para Migração
+===================================
+
+Introdução
+----------
+
+Na era atual de transformação digital, muitas organizações estão migrando cargas de trabalho para a nuvem. Esta aula abordará considerações importantes de rede durante o processo de migração para a Oracle Cloud Infrastructure (OCI).
+
+Traga Seu Próprio IP (Bring Your Own IP)
+----------------------------------------
+
+### Conceito
+
+*   Solução de gerenciamento público que permite trazer blocos CIDR publicamente roteáveis
+*   Emitidos por um registro regional de internet
+*   Validação de propriedade pela Oracle
+
+### Requisitos
+
+*   IPv4:
+    *   Bloco mínimo: /24
+    *   Bloco máximo: /8
+*   IPv6:
+    *   Prefixo mínimo: /48
+
+### Pool de IPs Públicos
+
+*   Conjunto de blocos CIDR IPv4 alocados para um locatário
+*   Possibilidade de adicionar endereços IP
+*   Para IPv6, não utiliza pools - atribuição direta a VCNs
+
+Benefícios do Traga Seu Próprio IP
+----------------------------------
+
+### Migração Suave
+
+*   Manter endereços IP da aplicação
+*   Facilitar transição entre ambientes
+
+### Exemplo de Arquitetura
+
+*   Data center local com:
+    *   Balanceadores de carga
+    *   Máquinas virtuais
+*   Região OCI com:
+    *   Sub-redes públicas e privadas
+    *   Balanceadores de carga flexíveis
+*   Conexões possíveis:
+    *   VPN site-to-site
+    *   FastConnect
+
+Serviço DNS da OCI
+------------------
+
+### Recursos Principais
+
+*   Criação de zonas
+*   Adição de registros
+*   Gerenciamento de consultas DNS pela rede de borda
+
+### Política de Gerenciamento de Tráfego
+
+#### Política de Balanceamento Ponderado
+
+*   Migração controlada de data center para servidores OCI
+*   Roteamento gradual de tráfego
+
+##### Estratégia de Migração
+
+1.  Implantar aplicação na OCI
+2.  Rotear inicialmente 10% do tráfego
+3.  Coletar feedback do usuário
+4.  Aumentar gradualmente a proporção
+5.  Migração completa quando confortável
+
+### Benefícios do DNS da OCI
+
+*   Desempenho DNS globalmente distribuído
+*   Alta resiliência
+*   Escalabilidade
+*   Roteamento inteligente de tráfego
+*   Alta disponibilidade
+
+Considerações Importantes
+-------------------------
+
+### Preparação para Migração
+
+*   Validar propriedade de endereços IP
+*   Planejar migração incremental
+*   Usar ferramentas de gerenciamento de tráfego
+*   Monitorar desempenho durante transição
+
+Conclusão
+---------
+
+A migração de rede para OCI requer planejamento cuidadoso. Com recursos como Traga Seu Próprio IP e Gerenciamento de Tráfego DNS, as organizações podem realizar transições suaves e controladas.
+
+---------
+
 ![image](https://github.com/user-attachments/assets/6ae881e1-f73a-421e-a254-4275fe66a23b)
 
 ![image](https://github.com/user-attachments/assets/18243579-a9ac-4da0-be6a-69509992dd97)
@@ -666,11 +771,13 @@ FastConnect oferece uma solução robusta e segura para conectar infraestrutura 
 
 ![image](https://github.com/user-attachments/assets/2f81f074-d296-4108-9adb-cdf34d08d9c1)
 
+![image](https://github.com/user-attachments/assets/bd37ed8d-3100-4d9b-b4c6-37dbf06869f3)
 
+![image](https://github.com/user-attachments/assets/fbbd5436-2fd0-448d-9baa-acf3309ffaf6)
 
+![image](https://github.com/user-attachments/assets/3704f249-bd7e-4121-bdff-6b07c35792a2)
 
+![image](https://github.com/user-attachments/assets/64c486ee-bd6b-4a96-95f8-e83c5af4c4e3)
 
-
-
-
+![image](https://github.com/user-attachments/assets/6d3e3d4e-6264-4b30-b772-a3bf417cc309)
 
