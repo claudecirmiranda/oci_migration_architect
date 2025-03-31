@@ -308,7 +308,8 @@ Para implantar esses recursos, baixe o arquivo zip do repositório e aplique com
 
 *   Por agora, não utilize um agendamento, mas há a opção de habilitar a coleta de métricas históricas e em tempo real.
 
-### 6. **Executar a Descoberta**
+6. **Executar a Descoberta**
+----------------------------
 
 1.  **Executar Descoberta Sob Demanda**: Após a configuração da fonte de ativos, você pode optar por executar a descoberta sob demanda. Isso permite que você inicie o processo imediatamente, em vez de esperar por um agendamento.
     
