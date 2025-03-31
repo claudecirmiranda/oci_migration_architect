@@ -781,3 +781,77 @@ A migração de rede para OCI requer planejamento cuidadoso. Com recursos como T
 
 ![image](https://github.com/user-attachments/assets/6d3e3d4e-6264-4b30-b772-a3bf417cc309)
 
+---------
+
+### Questão 1
+
+**Texto:**  
+Which of the following is NOT a valid gateway type in a Virtual Cloud Network (VCN)?
+*   NAT Gateway
+*   Storage Gateway
+*   Internet Gateway
+*   Service Gateway
+
+**Explicação:**  
+
+Esta questão pergunta sobre os tipos de gateways disponíveis dentro de uma Virtual Cloud Network no Oracle Cloud Infrastructure. A opção correta é "Storage Gateway", que não é um tipo de gateway na VCN. Os outros, como NAT Gateway, Internet Gateway e Service Gateway, são usados para diferentes propósitos de conectividade e gerenciamento de tráfego na nuvem.
+
+* * *
+
+### Questão 2
+
+**Texto:**  
+Which connectivity model in Oracle Cloud Infrastructure (OCI) FastConnect is suitable if you already have presence at an Oracle FastConnect location?
+*   With a Third-Party Provider
+*   Colocation with Oracle
+*   With an Oracle Partner
+*   Coexistence with an Oracle Partner
+
+**Explicação:**  
+
+Aqui, a questão aborda o modelo de conectividade adequado quando já se tem uma presença em um local do Oracle FastConnect. A resposta correta é "Colocation with Oracle", que implica que você pode estabelecer uma conexão direta e mais eficiente ao ter infraestrutura física próxima aos serviços da Oracle.
+
+* * *
+
+### Questão 3
+
+**Texto:**  
+Which service in Oracle Cloud Infrastructure (OCI) allows you to configure policies to serve intelligent responses to DNS queries?
+*   Traffic Optimizer
+*   Traffic Divert
+*   Traffic Management
+*   Route 53
+
+**Explicação:**  
+
+Esta pergunta foca nos serviços da OCI que permitem a configuração de políticas de resposta a consultas DNS. A resposta correta é "Traffic Management", que oferece funcionalidades para gerenciar como o tráfego de rede é dirigido com base em certas condições ou políticas definidas, permitindo respostas mais inteligentes.
+
+* * *
+
+### Questão 4
+
+**Texto:**  
+Which of the following statements about Oracle Cloud Infrastructure (OCI) Bring Your Own IP (BYOIP) is correct?
+*   BYOIP supports IPv6 CIDR blocks ranging from /24 to /8.
+*   BYOIP supports IPv4 CIDR blocks ranging from /24 to /8.
+*   BYOIP only supports IPv4 CIDR blocks of exactly /24.
+*   BYOIP supports any CIDR block size for both IPv4 and IPv6.
+
+**Explicação:**  
+
+A questão verifica o conhecimento sobre o recurso Bring Your Own IP (BYOIP) da OCI. A resposta correta é que "BYOIP supports IPv4 CIDR blocks ranging from /24 to /8". Isso significa que usuários podem trazer seus próprios endereços IP IPv4, dentro desse intervalo, para serem utilizados na infraestrutura da Oracle.
+
+* * *
+
+### Questão 5
+
+**Texto:**  
+Which two OCI VCN firewall features can be used to control traffic?
+*   Security Lists and Network Security Groups
+*   Security Groups and Network Access Control Lists
+*   Security Access Lists and Security Groups
+*   Network Access Groups and Security Lists
+
+**Explicação:**  
+
+A última questão se refere aos recursos de firewall disponíveis em uma Virtual Cloud Network. A resposta correta é "Security Lists and Network Security Groups". Essas ferramentas são essenciais para gerenciar e controlar o tráfego de rede, permitindo que os administradores definam regras de acesso e restrições para diferentes tipos de tráfego na nuvem.
