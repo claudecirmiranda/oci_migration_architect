@@ -341,7 +341,226 @@ Neste guia, cobrimos as etapas fundamentais para completar a fase de descoberta 
 
 ---------
 
+Guia para a Fase de Inventário no Serviço de Migração da Oracle Cloud
+=====================================================================
+
+Introdução
+----------
+
+Bem-vindo de volta! Na nossa demonstração anterior, abordamos a fase de descoberta no serviço de migração da Oracle Cloud. Agora, vamos explorar a próxima fase: a fase de inventário.
+
+Acessando a Fase de Inventário
+------------------------------
+
+1.  **Acesse o UI do OCM**: Clique no ícone do menu (hambúrguer) no canto superior esquerdo.
+2.  **Selecione**: Vá até “Migração e Recuperação de Desastres” e clique em “Inventário”.
+
+O que é a Fase de Inventário?
+-----------------------------
+
+Após completar o processo de descoberta, as informações do ambiente VMware (vSphere) são coletadas e a página de inventário é preenchida automaticamente. Na página de inventário, você encontrará:
+*   **Resumo do Ambiente**: Informações coletadas do ambiente baseado em VMware.
+*   **Classificação de Ativos**: Todos os dados das máquinas virtuais (VMs), incluindo:
+    *   Memória total
+    *   Memória consumida (aproximadamente 200 GB)
+    *   Consumo total de armazenamento (2,58 TB)
+    *   Total de CPUs
+
+Detalhes sobre as Máquinas Virtuais
+-----------------------------------
+
+Você pode visualizar as VMs classificadas por:
+*   Sistema Operacional
+*   Versão do vCenter
+
+### Comparando com o vCenter
+
+*   **Acesse o vCenter**: Abra o ambiente do vCenter para comparar os dados.
+*   **Verifique**: Confirme o consumo de armazenamento e recursos, garantindo que as informações do inventário estão corretas.
+
+Visualizando os Ativos de Inventário
+------------------------------------
+
+1.  **Clique em**: “Ativos de Inventário” no menu à esquerda.
+2.  **Confira as VMs**: Veja todas as VMs descobertas pelo processo. Entre elas, a appliance do agente remoto (ocb.remote).
+3.  **Detalhes da VM**: Selecione uma VM específica (como a chamada “workload”) e expanda a seção à direita para visualizar:
+    *   Sistema Operacional (ex.: Ubuntu Linux)
+    *   Estado de energia (ex.: ligado)
+    *   Número total de CPUs (2)
+    *   Configuração de memória (2 GB)
+    *   Armazenamento provisionado
+    *   Endereço IP da VM
+    *   Outras informações relacionadas ao vCenter
+
+Preparando a Próxima Fase
+-------------------------
+
+A fase de inventário é crucial para preparar a fase de planejamento e avaliação. Aqui estão algumas opções:
+
+### Limpeza do Inventário
+
+*   **Excluir VMs**: Caso não queira migrar certas VMs, você pode excluí-las da página de inventário.
+*   **Deixar VMs na Página**: Se preferir, mantenha as VMs na página de inventário, pois a seleção das VMs que serão migradas será feita na fase do projeto de migração.
+
+Criando um Projeto de Migração
+------------------------------
+
+*   **Criar um Novo Projeto**: Clique no link “Criar Migração” para iniciar a configuração do projeto de migração.
+*   **Importar Ativos**: Se você tiver um arquivo CSV com informações dos ativos, pode fazer o upload clicando no respectivo link para importar.
+
+Conclusão
+---------
+
+Esta foi uma visão geral rápida da fase de inventário do serviço OCM. Essa fase é fundamental para uma migração bem-sucedida.
+
+---------
+
 ### **Migration Projects**
+
+Guia sobre Projetos de Migração no Serviço de Migração da Oracle Cloud
+======================================================================
+
+Introdução
+----------
+
+Nesta lição, iremos focar nos **Projetos de Migração**, que são contêineres lógicos para **ativos de migração** e **planos de migração**.
+
+O que são Projetos de Migração?
+-------------------------------
+
+Os projetos de migração permitem que você defina:
+*   Quais VMs serão migradas
+*   Como elas serão migradas
+*   Qual será o cronograma de migração
+
+### Estrutura do Projeto de Migração
+
+![image](https://github.com/user-attachments/assets/9794ee2d-d601-459e-ae1b-f42a804f79c6)
+
+1.  **Ativos de Migração**: Um instantâneo das informações coletadas do inventário.
+2.  **Planos de Migração**: Mapas detalhados dos ativos descobertos para os ativos de destino.
+
+Ativos de Migração
+------------------
+
+Os ativos de migração são selecionados do inventário e incluem:
+*   **Inventário de Ativos**: Seleção de ativos a serem migrados.
+*   **Local de Replicação**: Um bucket de armazenamento em objeto onde os dados são copiados.
+*   **Cronograma de Replicação**: Define a frequência da replicação (diária, semanal, mensal ou anual).
+
+### Estrutura dos Ativos de Migração
+
+![image](https://github.com/user-attachments/assets/0ed96308-70a3-4321-add5-e0055b64ec92)
+
+Planos de Migração
+------------------
+
+Os planos de migração detalham como os ativos descobertos serão mapeados para novas configurações em OCI. Isso inclui:
+*   **Estratégia**: Define estratégias de migração com base na configuração de CPU e memória.
+*   **Compatibilidade de Ativos**: Verifica se os ativos são compatíveis com as formas de computação da OCI.
+*   **Estimativa de Custos**: Avalia o custo esperado para operar as instâncias no OCI.
+
+### Estrutura dos Planos de Migração
+
+![image](https://github.com/user-attachments/assets/eaa756a4-2577-4cf7-b9e8-ca7cb5415123)
+
+Resumo da Fase de Planejamento e Avaliação
+------------------------------------------
+
+### Ações no Projeto de Migração:
+
+**Ativos de Migração**:
+*   Adicione ativos (Inventário > Migração)
+*   Escolha o cronograma de replicação
+*   Selecione a localização de replicação
+**Planos de Migração**:
+*   Selecione a estratégia (CPU, Memória)
+    *   Exemplos: valores reais, pico, médio, percentuais
+*   Determine o ativo de destino (forma recomendada)
+*   Revise a estimativa de custos
+
+### Estrutura Resumida
+
+![image](https://github.com/user-attachments/assets/2922e773-b7a3-4db0-9946-fdd63448e89d)
+
+Conclusão
+---------
+
+Hoje, aprendemos sobre projetos de migração, que são contêineres lógicos para os ativos e planos de migração. Isso facilita a organização e execução da migração.
+
+---------
+
+Guia da Demonstração: Projetos de Migração
+==========================================
+
+Introdução
+----------
+
+Bem-vindo de volta! Nesta demonstração, vamos explorar a fase de **planejamento e avaliação** no serviço OCM (Oracle Cloud Manager). Aqui, aprenderemos a criar um projeto de migração.
+
+Passo a Passo para Criar um Projeto de Migração
+-----------------------------------------------
+
+### 1. Acessando a Interface do OCM
+
+*   **Navegue** até o serviço OCM.
+*   Clique em **Migrações**.
+
+### 2. Criando um Projeto de Migração
+
+*   Clique em **Criar Projeto de Migração**.
+*   **Nome**: Deixe o nome padrão.
+*   Clique em **Criar**.
+
+### 3. Componentes do Projeto de Migração
+
+Um projeto de migração possui dois componentes principais:
+*   **Planos de Migração**
+*   **Ativos de Migração**
+
+#### Criando um Plano de Migração
+
+*   **Nome do Plano**: Mantenha o nome padrão.
+*   **Compartimento**: Selecione o compartimento "migração".
+*   **Estratégia de Migração**: Escolha o tipo de recurso (CPU ou memória).
+    *   **Estratégia Padrão**: Selecione “Como Está”, que manterá a configuração exata da VM original.
+*   **Ambiente Alvo**: Escolha a VCN (Virtual Cloud Network) e a sub-rede onde a VM será migrada.
+*   Clique em **Criar o Plano de Migração**.
+
+### 4. Adicionando Ativos de Migração
+
+*   Vá para o projeto de migração e clique em **Adicionar Ativos de Migração**.
+*   Selecione **Adicionar do Inventário OCM**.
+
+#### Selecionando a VM
+
+*   Escolha a **VM workload** a ser migrada como uma instância de computação OCI.
+*   Clique em **Adicionar Ativos de Migração**.
+
+### 5. Escolhendo a Localização de Replicação
+
+*   Utilize o **bucket de replicação** que foi usado para o VDDK.
+*   Clique em **Enviar** para finalizar a seleção do bucket de replicação.
+
+### 6. Revisando a Compatibilidade dos Ativos
+
+*   Na página de resumo do plano de migração, revise a **compatibilidade do ativo**.
+    *   A compatibilidade deve estar alta, sem avisos ou erros.
+*   Confira a **estimativa de custos**, que compara os custos mensais entre AWS e OCI.
+
+### 7. Configuração do Ativo de Destino
+
+*   Revise a configuração do ativo de destino. Aqui, a VM workload está mapeada para o shape **E4 Flex padrão**.
+
+### 8. Iniciando a Replicação
+
+*   Retorne ao projeto de migração.
+*   Você pode configurar uma **programação de replicação** ou clicar no botão **Replicar** para iniciar a replicação imediatamente.
+
+Conclusão
+---------
+
+Essa foi uma visão geral de como criar e configurar um projeto de migração no OCM. Na próxima lição, veremos como executar essa replicação e lançar a instância de computação no ambiente OCI.
 
 ---------
 
