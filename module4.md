@@ -495,7 +495,225 @@ Nesta lição, revisamos a estrutura dos projetos de migração, os ativos de mi
 
 ---------
 
+Demonstração de Planejamento e Replicação de Migração AWS para OCI
+==================================================================
 
+Nesta demonstração, iremos percorrer o processo de planejamento e replicação de um recurso da AWS (EC2) para a Oracle Cloud Infrastructure (OCI).
+
+1. Preparação na AWS
+--------------------
+
+### Acessando o Console AWS
+
+*   **Navegar até a Página de Instâncias**: No AWS console, localize as instâncias.
+*   **Selecionar Instância**: Identifique a instância chamada **workload to migrate**. Esta está em estado de execução e usa o tipo `t2.micro`.
+
+### Verificando Armazenamento
+
+*   **Tipo de Armazenamento**: O armazenamento é fornecido pelo **Elastic Block Store (EBS)**.
+*   **Tamanho da Volume**: A dimensão do volume é de **8 GB**.
+
+2. Planejamento da Migração na OCI
+----------------------------------
+
+### Acessando o Console OCI
+
+1.  **Navegar até OCM**: No console OCI, clique em **Migrations**.
+2.  **Criar Projeto de Migração**: Escolha criar um novo projeto de migração com um plano de migração inicial.
+    *   **Nome do Projeto**: Chame-o de **migration demo**.
+    *   **Selecionar Compartimento**: Use a compartment de **migração**.
+    *   **Programação de Replicação**: Para este demo, vamos selecionar "sem programação" e proceder.
+
+### Adicionando Ativos à Migração
+
+*   **Adicionar Ativos da Inventário**: Clique em **Add from OCM inventory** e selecione a instância **workload to migrate**.
+
+### Configurando Local de Replicação
+
+*   **Escolher a Localização de Replicação**: Escolha **AD 1** como a disponibilidade dos volumes e a compartment de migração como a compartment de replicação.
+
+3. Criando um Plano de Migração
+-------------------------------
+
+### Definições do Plano
+
+1.  **Nome do Plano**: Nomeie como **migration plan demo**.
+2.  **Selecionar Compartimento**: Armazene na compartment de migração.
+3.  **Compartimento de Destino**: Indique onde os recursos migrados serão lançados (por exemplo, **my demo compartment**).
+4.  **Forma de Computação**: Escolha **sistema de recomendações** para as formas de computação que serão utilizadas.
+
+### Revisão e Submissão
+
+*   **Revisão de Detalhes**: Revise as informações e clique em **Submit**. Aguarde a confirmação de que o estado do plano está agora **ativo**.
+
+4. Iniciando a Replicação
+-------------------------
+
+### Replicação dos Recursos
+
+*   **Iniciar Replicação**: Clique em **Replicate** e confirme a replicação.
+*   **Monitorar Progresso**: Acompanhe a barra de progresso no console OCI.
+
+### Verificando o Console AWS
+
+*   **Navegar até Snapshots**: Sob a seção **Elastic Block Store**, observe que um snapshot foi criado.
+
+5. Hidratação e Monitoramento na OCI
+------------------------------------
+
+### Hidratação do Volume
+
+*   **Hidratação Agent**: Um agente temporário é executado, que lê o snapshot do volume EBS e escreve diretamente no serviço de volumes de bloco da OCI.
+*   **Verificando Volumes**: Clique em **Block Volumes > Boot Volumes** na OCI para ver os volumes replicados.
+
+### Características do Volume
+
+*   **Detalhes do Volume**: O volume replicado apresentará um tamanho de **47 GB** por padrão no OCI para instâncias Linux, mesmo que o EBS original fosse de **8 GB**.
+
+6. Finalizando a Migração
+-------------------------
+
+### Verificando Volume Replicado
+
+1.  **Acessar Ativos de Migração**: Retorne ao projeto de migração na OCI, selecione **Migration assets** e verifique a instância replicada.
+2.  **Conferir Progresso da Replicação**: Assegure-se de que a replicação foi concluída com sucesso através do painel de **Work requests**.
+
+### Conclusão do Processo
+
+*   **Marcar Migração Completa**: Esta etapa de finalização será realizada após a validação das etapas pós-migração.
+
+* * *
+
+Esse guia resume a demonstração de planejamento e replicação de ativos AWS para OCI, cobrindo desde a configuração no AWS até a finalização na OCI.
+
+---------
+
+Guia de Estudos: Fase Final da Migração AWS para OCI
+====================================================
+
+Nesta seção, vamos examinar a fase final da migração de recursos da AWS para a Oracle Cloud Infrastructure (OCI), que envolve o lançamento e a validação dos ativos migrados.
+
+1. Revisão do Fluxo de Migração
+-------------------------------
+
+As etapas de migração até agora são:
+1.  **Fonte de Ativos (Asset-Source)**:
+    *   Descoberta e inventário dos recursos.
+2.  **Projeto de Migração (Migration Project)**:
+    *   Criação de um plano de migração e seleção dos ativos a serem migrados.
+3.  **Revisão**:
+    *   Avaliação das recomendações e estimativas de custo.
+4.  **Replicações**:
+    *   Replicação dos volumes em volumes de boot e de bloco da OCI.
+
+![image](https://github.com/user-attachments/assets/2bf4ea16-2835-4f82-b141-56bfa7f81778)
+
+2. Etapas Finais da Migração
+----------------------------
+
+### Geração da Stack do Resource Manager
+
+*   **Stack do Resource Manager**: Uma stack será gerada para lançar as instâncias-alvo a partir dos volumes replicados.
+    *   Esta stack contém scripts do Terraform com configurações individuais para cada ativo.
+
+### Vantagem de Múltiplos Planos de Migração
+
+*   **Stacks Únicas para Cada Plano**: A criação de planos de migração permite que stacks únicas possam ser criadas com base nos ciclos de validação, como testes de integração ou carga, cada uma com suas próprias configurações de ativos-alvo.
+
+### Modificação dos Volumes de Boot
+
+*   Para instâncias EC2 baseadas em Linux, os volumes de boot são automaticamente modificados pelo serviço OCI para garantir que a inicialização ocorra corretamente.
+    *   Isso inclui a instalação de drivers necessários, atualização de anexos de armazenamento e ajuste de parâmetros do kernel.
+
+3. Validação Pós-Migração
+-------------------------
+
+### Importância da Validação
+
+*   **Validação Operacional**: Certifique-se de que a carga de trabalho migrada está operacional.
+*   **Integração com Serviços OCI**: Após os testes, pode-se integrar com outros serviços OCI, como serviços de observação e gerenciamento, para monitorar a aplicação.
+
+### Marcação do Projeto de Migração como Completo
+
+*   **Finalização do Projeto**: Marcar um projeto de migração como completo impede que ele seja modificado, ajudando a evitar alterações nos recursos implantados que foram verificados e estão em produção.
+
+![image](https://github.com/user-attachments/assets/44839950-e5ca-4248-bef8-edaac1d34bcf)
+
+4. Conclusão
+------------
+
+Nesta lição, examinamos as fases de lançamento e validação após a etapa de replicação. Agora você tem uma compreensão clara de como completar a migração de recursos da AWS para a OCI.
+
+* * *
+
+Guia de Estudos: Demonstração de Lançamento e Validação
+=======================================================
+
+Nesta demonstração, iremos explorar a fase final da migração de instâncias AWS para a Oracle Cloud Infrastructure (OCI), focando no lançamento da instância de computação usando o volume replicado.
+
+1. Acesso ao Projeto de Migração
+--------------------------------
+
+### Navegando no Console OCI
+
+1.  **Acessar o Projeto de Migração**: Clique no projeto de migração criado anteriormente.
+2.  **Selecionar o Plano de Migração**: Clique em **Migration plan** para ver as opções disponíveis.
+
+### Geração da Stack do Resource Manager
+
+*   **Gerar RMS Stack**: Há uma opção para gerar uma stack do Resource Manager (RMS) que irá provisionar uma instância de computação usando o volume replicado.
+
+2. Revisão da Compatibilidade e Custos
+--------------------------------------
+
+### Compatibilidade do Ativo
+
+*   **Resumo de Compatibilidade**: A compatibilidade do ativo para rodar na OCI é alta, sem erros ou avisos.
+*   **Estimativa de Custos**: Compare o custo do recurso na AWS e na OCI, com detalhes sobre armazenamento, computação e custos totais mensais.
+
+### Estratégia e Assets Alvo
+
+*   **Estratégia Usada**: A estratégia selecionada é baseada no tipo de recurso de CPU com as configurações padrão.
+*   **Selecionar Ativos Alvo**: O ativo de migração foi replicado como um volume de boot na OCI.
+
+### Opções de Configuração
+
+*   **Reconfigurar Ativo Alvo**: Aqui, você pode mudar o tipo de capacidade, selecionar uma VCN e uma subnet, e atribuir um endereço IP público. Para esta demonstração, não faremos alterações.
+
+3. Processo de Geração e Deploy da Stack
+----------------------------------------
+
+### Geração da Stack
+
+1.  **Gerar a Stack**: Navegue de volta ao plano de migração e clique em **Generate RMS stack**.
+2.  **Acompanhar o Progresso**: Verifique o progresso da geração da stack na seção **Work request**.
+
+### Implementação da Stack
+
+*   **Deploy da Stack**: Após a geração ser concluída, clique em **Deploy RMS stack** e confirme para iniciar a implantação.
+
+4. Verificando Instância de Computação
+--------------------------------------
+
+### Acessando a Instância
+
+1.  **Mudar Compartimento**: Mude para o compartimento onde a instância foi provisionada (por exemplo, **my demo**).
+2.  **Verificar Instância**: Confirme que a instância de computação foi lançada e está em execução, utilizando o tipo de forma **VM standard E4 flex**.
+
+5. Validações Pós-Migração
+--------------------------
+
+*   **Validações Necessárias**: Realize as validações pós-migração específicas para cada aplicação, assegurando que tudo funciona conforme esperado. Este guia não cobrirá as validações aqui.
+
+6. Finalizando o Processo de Migração
+-------------------------------------
+
+1.  **Retornar ao OCM**: Mude de volta para o compartimento de migração, selecione o projeto de migração.
+2.  **Marcar Migração como Completa**: Após a validação, o último passo é marcar a migração como completa. Uma vez marcada como completa, não poderá ser modificada, garantindo a integridade dos recursos implantados.
+
+* * *
+
+Esse guia abrange a demonstração de como migrar instâncias EC2 da AWS para a OCI, focando nas etapas de lançamento e validação.
 
 
 
