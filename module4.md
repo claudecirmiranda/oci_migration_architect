@@ -715,6 +715,55 @@ Nesta demonstração, iremos explorar a fase final da migração de instâncias 
 
 Esse guia abrange a demonstração de como migrar instâncias EC2 da AWS para a OCI, focando nas etapas de lançamento e validação.
 
+---------
+
+![image](https://github.com/user-attachments/assets/09bb6dc5-4097-4ebc-a50e-f2aeac5e6eb1)
+**1. Qual dos seguintes recursos da AWS é migrado para o OCI usando Oracle Cloud Migrations (OCM)?**
+*   ✅ Volume EBS
+*   ❌ Sub-redes VPC
+*   ❌ Bancos de Dados RDS
+*   ❌ Grupos de Usuários
+   
+**Nota:** Correto. A Oracle Cloud Migrations inicia um snapshot do volume EBS anexado à instância EC2, que é replicado no armazenamento em bloco do OCI.
+
+![image](https://github.com/user-attachments/assets/20610d62-d1f1-44df-aca0-8918cc09b781)
+**2. Quais dos seguintes serviços da AWS devem ser ativados para permitir a estimativa de custos e recomendações de dimensionamento no Plano de Migração da Oracle Cloud Migrations (OCM)?**
+*   ✅ Amazon CloudWatch
+*   ❌ AWS Snowball
+*   ✅ AWS Cost Explorer
+*   ❌ AWS Shield
+   
+**Nota:** Correto. O AWS Cost Explorer e o Amazon CloudWatch são necessários se estimativas de custo e recomendações de dimensionamento forem parte de um plano de migração. Um agente do Amazon CloudWatch precisa ser configurado em cada instância para coletar métricas de desempenho mais precisas e avançadas.
+
+![image](https://github.com/user-attachments/assets/803e09a4-33d2-4796-a4d5-fcfb7145d756)
+**3. O que a Oracle Cloud Migrations utiliza para realizar a descoberta de recursos da AWS no OCI?**
+*   ❌ Resource Manager Stack
+*   ❌ Service Connector Hub
+*   ✅ EC2 & EBS APIs
+*   ❌ Remote Agent Appliance
+   
+**Nota:** Correto. A Oracle Cloud Migrations (OCM) está integrada com as APIs do AWS EC2 e EBS para reunir detalhes das instâncias EC2 e dos volumes EBS necessários para a avaliação e o planejamento da migração. A OCM se conecta à AWS através de um papel IAM para extrair metadados sobre as instâncias EC2 e seus volumes EBS associados.
+
+Obtenha uma resposta mais inteligente de GPT-4o
+
+![image](https://github.com/user-attachments/assets/291a768d-df2d-4e58-a1cf-4d17be752cc0)
+**4. O que é criado como parte da execução de pré-requisitos na Oracle Cloud Migrations?**
+*   ❌ Migration Plan
+*   ❌ Remote Agent appliance
+*   ✅ Tag namespace
+*   ❌ Migration Asset
+
+**Nota:** Correto. Um namespace de tag "CloudMigrations" é criado no nível do inquilino com algumas definições de chave de tag. Essas tags são usadas pelo serviço de Oracle Cloud Migration para rastrear recursos migrados.
+
+![image](https://github.com/user-attachments/assets/573b6b2e-f6df-4929-8c04-4a8663834c1a)
+**5. Quais das seguintes afirmações são válidas para o serviço Oracle Cloud Migrations?**
+*   ❌ Hydration Agent representa a instância EC2 migrada
+*   ✅ Os volumes de inicialização do Linux são modificados para um lançamento bem-sucedido
+*   ❌ Os volumes EBS são replicados em um bucket de armazenamento de objetos OCI
+*   ✅ A transferência de dados é realizada usando HTTPS
+
+**Nota:** Correto. Quando se migra um sistema Linux para a Oracle Cloud Infrastructure (OCI) usando o serviço Oracle Cloud Migrations, o volume de inicialização da máquina virtual Linux será automaticamente modificado para garantir que inicialize corretamente no hypervisor OCI em segundo plano. O método de migração usado para transferir dados para o OCI varia com base no tipo de ambiente de origem, mas sempre é realizado de forma segura usando HTTPS.
+
 
 
 
