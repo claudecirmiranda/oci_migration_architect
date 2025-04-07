@@ -428,15 +428,24 @@ Essa arquitetura permite a migração eficiente e segura de cargas de trabalho e
 
 ![image](https://github.com/user-attachments/assets/2001083c-0d37-4ecb-90fb-73963edb2683)
 
+Explicação: vSAN é a parte de armazenamento hiperconvergente do OCVS. O termo hiperconvergente significa ter todos os drives flash NVMe conectados diretamente às Instâncias BareMetal. Esses drives são combinados para se tornarem um datastore de armazenamento para armazenar VMs.
+
 ![image](https://github.com/user-attachments/assets/b6ce1c61-5212-4cd2-9404-de1a3f7df35e)
+
+Explicação: O número mínimo de Instâncias BareMetal necessárias em um ambiente de Produção OCVS é ​​de 3 Hosts. Ele fornece alta disponibilidade para recursos como Computação e armazenamento. Para fins de não produção, um único provisionamento de nó está disponível.
 
 ![image](https://github.com/user-attachments/assets/214f0576-c8ba-4432-b927-f9bb61316a65)
 
+Explicação: OCI FastConnect é uma rede dedicada que fornece uma qualidade de serviço mais alta (em vez de Internet) e, por meio do FastConnect, você pode configurar um link de conectividade de latência mais baixa - maior largura de banda entre o local e o OCVS. A largura de banda deve ser de no mínimo 1 Gbps ou pode ser de 10 Gbps para migrações mais rápidas.
+
 ![image](https://github.com/user-attachments/assets/5936bbae-fe8a-4a66-a762-79035fa9ca04)
 
+Explicação: A alocação dinâmica de recursos não é um recurso no Hybrid Cloud Extension (HCX). O HCX é usado para criar uma plataforma de mobilidade de aplicativos com abstração dos limites de infraestrutura do ambiente local e OCVS. Ele é usado para estender redes de Camada 2 para OCVS, pareamento de sites entre ambientes e migrações para a nuvem.
 
+![image](https://github.com/user-attachments/assets/ea85809a-5617-48ae-baa6-e582a6fa30a0)
 
+Explicação: O Hybrid Cloud Extension é usado para migrar VMs do local para o Oracle Cloud VMware Solution. Para migrar VMs do vSphere para uma OCI Compute Instance, o serviço Oracle Cloud Migrations é usado.
 
+![image](https://github.com/user-attachments/assets/f348e5cb-243a-4247-a6fc-7b9bf1852aa6)
 
-
-
+Explicação: O valor central do OCVS é ​​que a solução oferece um modelo de segurança Zero Trust, o que significa que o cliente pode gerenciar seus próprios limites de segurança sem dar nenhum acesso à Oracle.
