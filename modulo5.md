@@ -99,12 +99,14 @@ A solução combina a robustez das ferramentas VMware com a infraestrutura escal
 ![image](https://github.com/user-attachments/assets/344f95ee-e27c-4bb0-95c9-5754f1c05968)
 ### 5. **Por que Migrar para OCVS?**
 
-*   **Redução da Despesa de Capital**: Migrar para um modelo de nuvem reduz custos com hardware.
-*   **Acesso ao Hardware e Software Mais Atual**: Mantenha a infraestrutura atualizada com as últimas tecnologias.
-*   **Aproveitar Habilidades Existentes**: Use seus conhecimentos em VMware durante a migração.
-*   **Alta Disponibilidade Aprimorada com OCI**: Explore como a Oracle Cloud Infrastructure melhora a continuidade dos negócios.
-*   **Prontidão para Nuvem Nativa**: Garanta que suas aplicações possam operar eficientemente na nuvem.
-*   **Flexibilidade e Controle**: Aproveite o controle sobre as suas soluções de TI.
+1.  **Reduzir capital expenditure**: Economizar em gastos de capital.
+2.  **Latest Hardware & Software**: Acesso ao hardware e software mais recentes.
+3.  **Leverage existing skill sets**: Aproveitar as habilidades já existentes na equipe.
+4.  **Enhanced High Availability with OCI**: Melhorar a alta disponibilidade com Oracle Cloud Infrastructure.
+5.  **Move Apps without Refactoring**: Mover aplicativos sem a necessidade de refatoração.
+6.  **Flexibility and Control**: Oferecer flexibilidade e controle no ambiente de TI.
+7.  **Cloud Native readiness**: Preparação para aplicações nativas em nuvem.
+8.  **Achieve DR with Hybrid Cloud**: Implementar recuperação de desastres com a nuvem híbrida.
 
 ![image](https://github.com/user-attachments/assets/1d2ccfb8-9692-4d02-869b-dc4aa405b5d0)
 ### 6. **Benefícios Chave com OCVS**
@@ -180,6 +182,7 @@ A solução combina a robustez das ferramentas VMware com a infraestrutura escal
     *   **52 Cores** com velocidade de 2.0 GHz (turbo até 2.4 GHz).
     *   **768 GB de RAM**.
     *   **51.2 TB de NVMe local**.
+
 **AMD EPYC: BM.DenseIO.E4.x**
 *   **Características**:
     *   **32, 64 ou 128 Cores** com velocidade de 2.55 GHz (turbo até 3.5 GHz).
@@ -243,10 +246,12 @@ A solução combina a robustez das ferramentas VMware com a infraestrutura escal
 *   Determinar a quantidade total de nós de computação necessários.
 *   OCVS permite um cluster de 3 a 64 nós ESXi (apenas usando formas de Dense IO).
 *   Alta disponibilidade (HA) para proteger VMs dentro do cluster.
+
 **Rede**:
 *   Um VCN se assemelha a uma rede tradicional com firewall.
 *   NSX-T como uma rede de sobreposição com Edges e Controllers.
 *   NSX proporciona extensões significativas para a rede, aumentando a disponibilidade.
+
 **Armazenamento**:
 *   VMware vSAN para desempenho e confiabilidade empresariais.
 *   Utilização de uma solução "toda flash" em instâncias de metal nu.
