@@ -254,7 +254,7 @@ A solução combina a robustez das ferramentas VMware com a infraestrutura escal
 
 **Armazenamento**:
 *   VMware vSAN para desempenho e confiabilidade empresariais.
-*   Utilização de uma solução "toda flash" em instâncias de metal nu.
+*   Utilização de uma solução "toda flash" em instâncias bare metal.
 *   Implementação de domínios de falha e políticas de armazenamento para assegurar redundância.
 
 ![image](https://github.com/user-attachments/assets/0f1f27be-9b5a-48fa-9c08-51b98f2de20d)
@@ -323,6 +323,7 @@ Os três appliances de serviço associados são:
 1.  **HCX IX**: Interconexão.
 2.  **HCX WO**: Otimização de WAN.
 3.  **HCX NE**: Extensão de Rede.
+
 Esses componentes trabalham em conjunto para facilitar a migração e a extensão de aplicações entre ambientes locais e nuvem.
 
 ![image](https://github.com/user-attachments/assets/44028f7b-7c70-413b-84e2-12d0f0837ea0)
@@ -423,4 +424,19 @@ A ilustração representa a arquitetura de migração do VMware HCX (Hybrid Clou
 7.  **NSX Router**: Um roteador da solução NSX que gerencia o tráfego de dados entre as redes estendidas e locais.
     
 Essa arquitetura permite a migração eficiente e segura de cargas de trabalho entre diferentes ambientes, mantendo a conectividade e a performance.
+
+
+![image](https://github.com/user-attachments/assets/2001083c-0d37-4ecb-90fb-73963edb2683)
+
+![image](https://github.com/user-attachments/assets/b6ce1c61-5212-4cd2-9404-de1a3f7df35e)
+
+![image](https://github.com/user-attachments/assets/214f0576-c8ba-4432-b927-f9bb61316a65)
+
+![image](https://github.com/user-attachments/assets/5936bbae-fe8a-4a66-a762-79035fa9ca04)
+
+
+
+
+
+
 
