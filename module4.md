@@ -637,7 +637,8 @@ As etapas de migração até agora são:
 
 *   **Finalização do Projeto**: Marcar um projeto de migração como completo impede que ele seja modificado, ajudando a evitar alterações nos recursos implantados que foram verificados e estão em produção.
 
-![image](https://github.com/user-attachments/assets/44839950-e5ca-4248-bef8-edaac1d34bcf)
+![image](https://github.com/user-attachments/assets/4ac05d40-cd78-4757-b272-8fdc25d6fc1b)
+
 
 4. Conclusão
 ------------
